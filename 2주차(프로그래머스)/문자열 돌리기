@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String a = sc.next();
+        
+        // 문자열을 문자 배열로 변환 후 출력
+        for (char ch : a.toCharArray()) {
+            System.out.println(ch);
+        }
+    }
+}
