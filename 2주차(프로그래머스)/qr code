@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+public class Solution {
+    public String solution(int q, int r, String code) {
+        ArrayList<Character> result = new ArrayList<>();
+        
+        // 문자열의 각 인덱스 i를 q로 나눈 나머지가 r인 경우만 추출
+        for (int i = 0; i < code.length(); i++) {
+            if (i % q == r) {
+                result.add(code.charAt(i));
+            }
+        }
+        
+        // ArrayList에 저장된 문자들을 하나의 문자열로 합침
+        StringBuilder finalResult = new StringBuilder();
+        for (char c : result) {
+            finalResult.append(c);
+        }
+        
+        return finalResult.toString(); // 최종 문자열 반환
+    }
+}
