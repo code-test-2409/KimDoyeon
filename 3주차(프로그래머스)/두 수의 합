@@ -1,0 +1,11 @@
+import java.math.BigInteger;
+
+class Solution {
+    public String solution(String a, String b) {
+        BigInteger x = new BigInteger(a);  // 큰 숫자 처리
+        BigInteger y = new BigInteger(b);
+        BigInteger z = x.add(y);  // 더하기 연산
+
+        return z.toString();  // 결과를 문자열로 변환
+    }
+}
