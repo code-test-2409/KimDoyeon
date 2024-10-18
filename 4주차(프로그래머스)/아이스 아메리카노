@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+class Solution {
+    public int[] solution(int money) {
+        ArrayList<Integer> answer = new ArrayList<>();
+        
+        answer.add(money / 5500);
+        answer.add(money % 5500);
+        
+        // ArrayList를 int[] 배열로 변환하여 반환
+        return answer.stream().mapToInt(i -> i).toArray();
+        
+//        2. ArrayList 없이 배열로만 하는 방법
+//         int[] answer = new int[2]; // 2개의 요소를 가지는 배열 생성
+
+//         answer[0] = money / 5500;  // 커피 몇 잔을 살 수 있는지 계산
+//         answer[1] = money % 5500;  // 남은 돈 계산
+
+//         return answer;  // int[] 배열 반환
+    }
+}
