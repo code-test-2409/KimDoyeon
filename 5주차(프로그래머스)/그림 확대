@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+char** solution(const char* picture[], size_t picture_len, int k) {
+    char** answer = (char**)malloc(picture_len * k * sizeof(char*));
+    for(int i = 0; i < picture_len; i++) {
+        int len = strlen(picture[i]);
+        char* pic = (char*)malloc(len * k + 1);
+        pic[len * k] = '\0';
+        for(int j = 0; j < len; j++) {
+            for(int p = 0; p < k; p++) {
+                pic[j * k + p] = picture[i][j];
+            }
+        }
+        for(int p = 0; p < k; p++) {
+            answer[i * k + p] = pic;
+        }
+    }
+    return answer;
+}
