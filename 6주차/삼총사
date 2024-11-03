@@ -1,0 +1,26 @@
+class Solution {
+    int cnt=0;
+    public int solution(int[] number) {
+        dfs(0,0,new boolean[number.length],number);
+        return cnt;
+    }
+
+    void dfs(int depth,int idx,boolean[] visited,int[] number) {
+        if(depth==3) {
+            int sum=0;
+            for(int i=0;i<visited.length;i++) {
+                if(!visited[i]) continue;
+                sum+=number[i];
+            }
+            cnt+=sum==0?1:0;
+            return;
+        }
+
+        for(int i=idx;i<number.length;i++) {
+            if(visited[i]) continue;
+            visited[i]=true;
+            dfs(depth+1,i+1,visited,number);
+            visited[i]=false;
+        }
+    }
+}
