@@ -1,0 +1,61 @@
+class Solution {
+    public String solution(int[] numbers, String hand) {
+        StringBuilder result = new StringBuilder();
+        
+        // 키패드의 좌표 (각 숫자에 대한 x, y 좌표)
+        int[][] keypad = {
+            {3, 1}, // 0
+            {0, 0}, // 1
+            {0, 1}, // 2
+            {0, 2}, // 3
+            {1, 0}, // 4
+            {1, 1}, // 5
+            {1, 2}, // 6
+            {2, 0}, // 7
+            {2, 1}, // 8
+            {2, 2}  // 9
+        };
+
+        // 왼손과 오른손의 초기 위치 (각각 *과 #)
+        int[] leftHand = {3, 0}; // * 위치
+        int[] rightHand = {3, 2}; // # 위치
+
+        // 각 숫자에 대해 어떤 손을 사용할지 결정
+        for (int number : numbers) {
+            // 1, 4, 7은 왼손으로
+            if (number == 1 || number == 4 || number == 7) {
+                result.append("L");
+                leftHand = keypad[number]; // 왼손 위치 업데이트
+            }
+            // 3, 6, 9는 오른손으로
+            else if (number == 3 || number == 6 || number == 9) {
+                result.append("R");
+                rightHand = keypad[number]; // 오른손 위치 업데이트
+            }
+            // 2, 5, 8, 0은 두 손의 거리를 계산해서 가까운 손으로
+            else {
+                int leftDistance = Math.abs(leftHand[0] - keypad[number][0]) + Math.abs(leftHand[1] - keypad[number][1]);
+                int rightDistance = Math.abs(rightHand[0] - keypad[number][0]) + Math.abs(rightHand[1] - keypad[number][1]);
+
+                if (leftDistance < rightDistance) {
+                    result.append("L");
+                    leftHand = keypad[number]; // 왼손 위치 업데이트
+                } else if (leftDistance > rightDistance) {
+                    result.append("R");
+                    rightHand = keypad[number]; // 오른손 위치 업데이트
+                } else {
+                    // 거리가 같을 때, 손잡이에 따라 결정
+                    if (hand.equals("left")) {
+                        result.append("L");
+                        leftHand = keypad[number]; // 왼손 위치 업데이트
+                    } else {
+                        result.append("R");
+                        rightHand = keypad[number]; // 오른손 위치 업데이트
+                    }
+                }
+            }
+        }
+
+        return result.toString();
+    }
+}
