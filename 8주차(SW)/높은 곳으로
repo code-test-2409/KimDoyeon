@@ -1,0 +1,27 @@
+package com_example.cs;
+
+import java.util.Scanner;
+class Solution
+{
+    public static void main(String args[]) throws Exception
+    {
+        Scanner sc = new Scanner(System.in);
+        int T;
+        T=sc.nextInt();
+
+        for(int test_case = 1; test_case <= T; test_case++)
+        {
+            int num = sc.nextInt();
+            int bomb = sc.nextInt();
+            int stair = 0;
+
+            for (int i = 1; i <= num; i++) {
+                if (stair + i == bomb)
+                    stair = stair + i - 1;
+                else
+                    stair += i;
+            }
+            System.out.println(stair);
+        }
+    }
+}
